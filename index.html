@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cashieragent | Payment Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 420px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 30px 25px;
+    }
+    h2 {
+      text-align: center;
+      color: #222;
+      margin-bottom: 20px;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      width: 150px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+      color: #333;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    button {
+      background-color: #ffb800;
+      color: #000;
+      font-weight: bold;
+      margin-top: 20px;
+      border: none;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #e6a500;
+    }
+    .confirmation {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
+    }
+    .section {
+      margin-top: 40px;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+    @media (max-width: 500px) {
+      .container {
+        margin: 20px;
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <h1 style="margin: 0; color: #ffb800; font-size: 28px;">Cashieragent</h1>
+    </div>
+
+    <h2>Deposit</h2>
+    <label for="paymentMethod">Select Payment Method</label>
+    <select id="paymentMethod">
+      <option value="upi">UPI</option>
+      <option value="paytm">Paytm</option>
+      <option value="card">Debit/Credit Card</option>
+      <option value="crypto">Crypto</option>
+    </select>
+
+    <label for="amount">Enter Amount (INR)</label>
+    <input type="number" id="amount" placeholder="e.g. 1000" />
+
+    <label for="upi">UPI ID / Wallet</label>
+    <input type="text" id="upi" placeholder="e.g. example@upi" />
+
+    <button onclick="submitPayment()">Deposit Now</button>
+    <div class="confirmation" id="confirmation">
+      ✅ Payment Initiated Successfully! <br />Wait for confirmation.
+    </div>
+
+    <div class="section">
+      <h2>Withdraw</h2>
+      <label for="withdrawMethod">Select Withdrawal Method</label>
+      <select id="withdrawMethod">
+        <option value="upi">UPI</option>
+        <option value="paytm">Paytm</option>
+        <option value="bank">Bank Transfer</option>
+      </select>
+
+      <label for="withdrawAmount">Enter Amount (INR)</label>
+      <input type="number" id="withdrawAmount" placeholder="e.g. 500" />
+
+      <label for="withdrawUpi">UPI ID / Bank Account</label>
+      <input type="text" id="withdrawUpi" placeholder="e.g. yourupi@bank" />
+
+      <button onclick="submitWithdraw()">Withdraw Now</button>
+      <div class="confirmation" id="withdrawConfirmation">
+        ✅ Withdrawal Request Submitted! Processing within 24 hours.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function submitPayment() {
+      const amount = document.getElementById('amount').value;
+      const upi = document.getElementById('upi').value;
+      if (!amount || !upi) {
+        alert('Please enter amount and UPI ID');
+        return;
+      }
+      document.getElementById('confirmation').style.display = 'block';
+    }
+
+    function submitWithdraw() {
+      const amount = document.getElementById('withdrawAmount').value;
+      const upi = document.getElementById('withdrawUpi').value;
+      if (!amount || !upi) {
+        alert('Please enter withdrawal amount and ID');
+        return;
+      }
+      document.getElementById('withdrawConfirmation').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
